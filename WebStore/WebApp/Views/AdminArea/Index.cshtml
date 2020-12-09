@@ -1,0 +1,31 @@
+﻿@model AdminAreaViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="row p-1 m-1" style="background-color: #fff; border-radius: 10px">
+    <div class="col-12 p-0 m-0 text-center font-weight-bold">
+        <h4>Users</h4>
+    </div>
+    @foreach (var (user, roles) in Model.Users)
+    {
+        <div class="col-12 m-0 p-0 row">
+            @user.FirstName @user.LastName - @user.Email -
+            @foreach (var role in roles)
+            {
+                <h5 class="ml-1">@role</h5>
+            }
+            @if (!roles.Contains("Admin"))
+            {
+                <a class="btn btn-secondary p-0 ml-1 m-0" asp-action="MakeUserAdmin" asp-route-email="@user.Email">Make admin</a>
+            }
+            @if (!roles.Contains("Publisher"))
+            {
+                <text>  | </text>
+                <a class="btn btn-secondary p-0 ml-1 m-0" asp-action="MakeUserPublisher" asp-route-email="@user.Email">Make publisher</a>
+            }
+        </div>
+    }
+</div>
+
+<a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"> Back to Profile</a>

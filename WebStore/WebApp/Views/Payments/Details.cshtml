@@ -1,0 +1,47 @@
+@model Domain.Payments
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@Resources.Common.Details</h1>
+
+<div>
+    <h4> @Resources.Domain.Payments.Payments.PaymentsUnit</h4>
+    <hr/>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Resources.Domain.Payments.Payments.Cart
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cart!.Status)
+        </dd>
+        <dt class="col-sm-2">
+            @Resources.Domain.Payments.Payments.CreatedAt
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+        <dt class="col-sm-2">
+            @Resources.Domain.Payments.Payments.PayedAt
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PayedAt)
+        </dd>
+        <dt class="col-sm-2">
+            @Resources.Domain.Payments.Payments.Info
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Info)
+        </dd>
+        <dt class="col-sm-2">
+            @Resources.Domain.Payments.Payments.Sum
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Sum)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">@Resources.Common.BackToList</a>
+</div>

@@ -1,0 +1,104 @@
+﻿@using Extensions
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-xs-12 col-md-3">
+        @if (@User.UserRole().Contains("Publisher"))
+        {
+            <div style="height: 90px">
+                @if (@User.UserRole().Contains("Admin"))
+                {
+                    <a style="text-align: center" asp-controller="AdminArea" asp-action="Index"><h2 >@Resources.Views.Shared._Layout.AdminPanel</h2></a>
+                }
+                else
+                {
+                    <h2 style="text-align: center">@Resources.Views.Shared._Layout.PublisherPanel</h2>
+                }
+            </div>
+            <hr/>
+            <ul class="list-group">
+
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Items" asp-action="Index">@Resources.Views.Shared._Layout.Products</a>
+                    <span class="badge badge-primary badge-pill"><i class="fa fa-archive"></i></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Brands" asp-action="Index">@Resources.Views.Shared._Layout.Brands</a>
+                    <span class="badge badge-primary badge-pill"><i class="fa fa-copyright"></i></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="Index">@Resources.Views.Shared._Layout.Categories</a>
+                    <span class="badge badge-primary badge-pill"><i class="fa fa-align-justify"></i></span>
+
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Warehouses" asp-action="Index">@Resources.Views.Shared._Layout.Warehouses</a>
+                    <span class="badge badge-primary badge-pill"><i class="fa fa-home"></i></span>
+                </li>
+                @if (@User.UserRole().Contains("Admin"))
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Carts" asp-action="Index">@Resources.Views.Shared._Layout.Carts</a>
+                        <span class="badge badge-primary badge-pill"><i class="fa fa-cart-arrow-down"></i></span>
+                    </li>
+                    <br/>
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="DeliveryTypes" asp-action="Index">@Resources.Views.Shared._Layout.DeliveryTypes</a>
+                            <span class="badge badge-primary badge-pill">..</span>
+                        </li>
+                    </ul>
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Deliveries" asp-action="IndexAdmin">@Resources.Views.Shared._Layout.AllDeliveries</a>
+
+                            <span class="badge badge-primary badge-pill"><i class="fa fa-truck"></i></span>
+                        </li>
+                    </ul>
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Payments" asp-action="Index">@Resources.Views.Shared._Layout.Payments</a>
+
+                            <span class="badge badge-primary badge-pill"><i class="fa fa-credit-card"></i></span>
+                        </li>
+                    </ul>
+                }
+            </ul>
+        }
+
+        <div>
+            <h2 style="text-align: center">@Resources.Views.Shared._Layout.CustomerPanel</h2>
+        </div>
+        <hr/>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Deliveries" asp-action="Index">@Resources.Views.Shared._Layout.My_Deliveries</a>
+                <span class="badge badge-primary badge-pill"><i class="fa fa-truck-loading"></i></span>
+            </li>
+        </ul>
+    </div>
+    <div class="col-xs-12 col-md-9">
+        <div style="height: 90px">
+            <h1 style="text-align: center">@Resources.Views.Shared._Layout.ManageYourAccount</h1>
+            <h4 style="text-align: center">@Resources.Views.Shared._Layout.ChangeYourAccountSettings</h4>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-md-3">
+                <partial name="_ManageNav"/>
+            </div>
+            <div class="col-md-9">
+                <div>
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}

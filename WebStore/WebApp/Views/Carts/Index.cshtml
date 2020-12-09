@@ -1,0 +1,58 @@
+@model IEnumerable<BLL.App.DTO.Cart>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Resources.Domain.Cart.Cart.Status
+            </th>
+            <th>
+                @Resources.Domain.Cart.Cart.CreatedAt
+            </th>
+            <th>
+                @Resources.Domain.Cart.Cart.PayedAt
+            </th>
+            <th>
+                @Resources.Domain.Cart.Cart.TotalPrice
+            </th>
+            <th>
+                @Resources.Domain.Cart.Cart.TotalPriceWithoutVat
+            </th>
+            <th>
+                @Resources.Domain.Cart.Cart.Vat
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PayedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPriceWithoutVat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vat)
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.Id">@Resources.Common.Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

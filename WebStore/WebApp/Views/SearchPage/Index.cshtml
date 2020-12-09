@@ -1,0 +1,73 @@
+﻿@using Extensions
+@model ItemsViewViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-xs-12 col-md-3">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <form asp-action="Index">
+            <input hidden="" asp-for="Search" value="@Model.Search"/>
+            <div>
+                <strong>@Resources.Views.Shared._Layout.Brands</strong>
+                <div class="form-group">
+                    <select asp-for="BrandsFilter" class="form-control" asp-items="Model.BrandSelectList" multiple="multiple"></select>
+                </div>
+            </div>
+            <div>
+                <strong>@Resources.Views.Shared._Layout.Categories</strong>
+                <div class="form-group">
+                    <select asp-for="CategoriesFilter" class="form-control" asp-items="Model.CategorySelectList" multiple="multiple"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@Resources.Common.Filter" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+    <div class="col-xs-12 col-md-9">
+        <div class="row">
+            <div class="col-12" style="text-align: center">
+                <h4 style="display: inline-block; vertical-align: middle; text-align: right;">
+                    @if (string.IsNullOrEmpty(Model.Search))
+                    {
+                        <text>All results</text>
+                    }
+                    else
+                    {
+                        <text>@Resources.Common.ResultsFor <strong>@Model.Search</strong></text>
+                    }
+                </h4>
+            </div>
+            @foreach (var item in Model.Items)
+            {
+                <div class="col-xs-12 col-sm-6 col-lg-4">
+                    <div class="card">
+                        <a asp-controller="ItemsView" asp-action="Details" asp-route-id="@item.Id">
+                            <img class="card-img-top" style="height: 240px;" src="https://cdn.icon-icons.com/icons2/1678/PNG/512/wondicon-ui-free-parcel_111208.png" alt="">
+                            <div class="card-body">
+                                <p class="card-text">@Html.DisplayFor(modelItem => item.Name) - <a asp-controller="BrandsView" asp-action="Details" asp-route-id="@item.BrandId">@Html.DisplayFor(modelItem => item.Brand!.Name)</a></p>
+                                <p class="card-text">@Html.DisplayNameFor(model => item.Price) - @Html.DisplayFor(modelItem => item.Price)$</p>
+                            </div>
+                        </a>
+                        @if (User.IsAuthorized())
+                        {
+                            <div class="row" style="justify-content:center">
+                                <a class="btn btn-primary own-btn own-btn-cart col-10" asp-action="AddToCart" asp-route-itemId="@item.Id"> @Resources.Common.AddToCart</a>
+                                <a class="btn btn-secondary own-btn own-btn-wish col-10" asp-action="AddToWishList" asp-route-itemId="@item.Id"> @Resources.Common.AddToWishList</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

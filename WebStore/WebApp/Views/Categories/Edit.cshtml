@@ -1,0 +1,29 @@
+@model CategoryCreateEditViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+
+<h4>@Resources.Domain.Category.Category.CategoryUnit</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <partial name="_CreateEdit"/>
+            <input type="hidden" asp-for="Category.Id" />
+            <div class="form-group">
+                <input type="submit" value="@Resources.Views.Shared._Layout.Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@Resources.Common.BackToList</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

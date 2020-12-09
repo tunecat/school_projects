@@ -1,0 +1,19 @@
+﻿@model BLL.App.DTO.Brand
+
+ <h4>@Resources.Domain.Item.Item.Brand</h4>
+    <hr/>
+
+<dl class="row">
+    <dt class = "col-sm-2">
+        @Resources.Domain.Brand.Name
+    </dt>
+    <dd class = "col-sm-10">
+        @Html.DisplayFor(model => model.Name)
+    </dd>
+    <dt class = "col-sm-2">
+        @Resources.Domain.Brand.Description
+    </dt>
+    <dd class = "col-sm-10">
+        @Html.DisplayFor(model => model.Description)
+    </dd>
+</dl>

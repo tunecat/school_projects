@@ -1,0 +1,38 @@
+@using Extensions
+@model IEnumerable<BLL.App.DTO.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<p>
+    <a asp-action="Create">@Resources.Common.Create_New</a>
+</p>
+@if (User.UserRole().Contains("Admin"))
+{
+    <p>
+        <a asp-action="CreateParentCategory">@Resources.Domain.Category.Category.CreateNewParentCategory</a>
+    </p>
+}
+@foreach (var parentCategory in Model)
+{
+    <ul class="list-group">
+        <h4>@Html.DisplayFor(modelItem => parentCategory.Name)</h4>
+        @foreach (var child in parentCategory.ChildCategories!)
+        {
+            <li class="list-group-item">
+                <a>
+                    <h5>@Html.DisplayFor(modelItem => child.Name)</h5>
+                </a>
+                @if (User.UserRole().Contains("Admin"))
+                {    
+                    <a asp-action="EditTranslation" asp-route-id="@child.Id">Edit Translations | </a> 
+                    <a asp-action="Edit" asp-route-id="@child.Id">@Resources.Common.Edit | </a> 
+                    <a asp-action="Delete" asp-route-id="@child.Id">@Resources.Common.Delete</a>
+                }
+                
+            </li>
+        }
+    </ul>
+}

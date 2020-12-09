@@ -1,0 +1,55 @@
+@model UserWishListViewModel
+
+@{
+    ViewData["Title"] = "Wish List";
+}
+
+
+
+@if (Model.Items!.Count() == 0)
+{
+    <div>
+        <h3 style="text-align: center">Empty</h3>
+    </div>
+} else {
+    <div style="text-align: center">@Resources.Common.WishList</div>
+    <hr/>
+    <div class="row">
+        @foreach (var item in Model.Items)
+        {
+
+            if(item != null){
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" style="margin-bottom: 10px">
+                    <div class="card" style="min-width: 210px">
+                        <a asp-action="Details" class="product-link" asp-route-id="@item.Id">
+                            <img class="card-img-top" style="height: 240px;" src="https://cdn.icon-icons.com/icons2/1678/PNG/512/wondicon-ui-free-parcel_111208.png" alt="">
+                            <div class="card-body" style="color:black;" >
+                                <p class="card-text" > @Html.DisplayFor(modelItem => item.Brand!.Name) @Html.DisplayFor(modelItem => item.Name)</p>
+                                @if (item.Discount != 0)
+                                {
+                                    <div class="card-text" style="display: flex; flex-wrap: wrap;">
+                                        <div style="text-decoration: line-through">@Html.DisplayFor(modelItem => item.Price)</div><div>$ -> </div>
+                                        <strong style="color:red;" > @Html.DisplayFor(modelItem => item.PriceWithDiscount)$</strong>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>@Html.DisplayFor(modelItem => item.Price)$</div>
+                                }
+                            </div>
+                        </a>
+                        <div class="row" style="justify-content:center">
+                            <a class="btn btn-secondary own-btn own-btn-wish col-10" asp-action="removeProduct" asp-route-itemId="@item.Id">@Resources.Common.Remove</a>
+                            <a class="btn btn-primary own-btn own-btn-cart col-10" asp-action="addProductToCart" asp-route-itemId="@item.Id">@Resources.Common.AddToCart</a>
+                        </div>
+                    
+                    </div>
+                </div>
+            }
+        }
+                    <hr/>
+                    <div class="col-12" style="text-align: center"><a class="btn-secondary btn" style="padding-right: 40px; padding-left: 40px" asp-action="Clear" >@Resources.Common.Clear</a></div>
+    </div>
+   
+}
+

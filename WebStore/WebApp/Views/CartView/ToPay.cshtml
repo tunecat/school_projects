@@ -1,0 +1,138 @@
+﻿@model CartDeliveryViewModel
+
+@{
+    ViewData["Title"] = "Pay";
+}
+
+
+<div class="row">
+    <div class="col-9">
+        @Html.DisplayFor(modelItem => Model.DeliveryType!.Name)
+
+        <form asp-action="Pay">
+            <input hidden="" name="cartId" value="@Model.Cart.Id"/>
+            <input hidden="" name="typeId" value="@(Model.DeliveryType!.Id)"/>
+            @if (Model.DeliveryType!.Value == 1)
+            {
+                <div class="form-group">
+                    <label name="address" class="control-label"></label>
+                    <input name="address" value="" minlength="2" maxlength="99" required="" type="text" class="form-control"/>
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <div id="omniva_container1"></div>
+                    <label name="destination" class="control-label"></label>
+                </div>
+            }
+
+            <div class="cc-selector">
+                <div class="row">
+                    @{
+                        System.Diagnostics.Debug.Assert(Model.PaymentMethods != null, "Model.PaymentMethods != null");
+                    }
+                    @foreach (var method in Model.PaymentMethods)
+                    {
+                        <div class="col-sm-6 col-lg-4">
+                            <input type="radio" name="bank" id="@method.Key" value="{@method.Key};@method.Value["url"]"/>
+                            <label for="@method.Key" class="drinkcard-cc">
+                                <img alt="" src="@method.Value["logo_url"]"/>
+                            </label>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Pay" class="btn btn-primary"/>
+            </div>
+        </form>
+
+    </div>
+    <div class="col-3">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Tellimuse Andmed</h5>
+                <hr/>
+                <h6 class="card-subtitle mb-2 text-muted">Ostukorv</h6>
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.Cart.CartItems.Count) Products
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.Cart.TotalPrice)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Delivery
+                        </td>
+                        <td>
+                            <strong>@Html.DisplayFor(modelItem => Model.DeliveryType!.DeliveryCost)</strong>
+                        </td>
+                    </tr>
+                    <tr class="totals-row">
+                        <td>
+                            <strong>Summa</strong>
+                        </td>
+                        <td>
+                            <strong>@(Math.Round(Model.Cart.TotalPrice + Model.DeliveryType!.DeliveryCost, 2))€</strong>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://www.omniva.ee/widget/widget.js"> </script>
+
+@if (Model.DeliveryType.Value == 3)
+{
+    // for post offices
+    <script>
+    var wd = new OmnivaWidget({
+         
+             compact_mode: true,		// Compact widget is not shown
+                                         // If enabled only a dropdown with locations will be shown
+             custom_html: false,         // Predefined HTML is activated
+                                         // It is allowed to create a custom HTML                                // It will be included in the container		// Will be added to the unique element ids if 
+                                         // there is a need to have more than one widget
+            id: 1,
+         
+            show_offices: true,		// Post offices will be shown
+                                         // If disabled post offices will not be shown in the dropdown
+         
+             show_machines: false,	// Parcel machines will be shown
+                                         // If disabled parcel machines will not be shown in the dropdown
+             selection_value: 'Destination' // Preselected value. (case insensitive, will be trimmed) Can be empty or entirely omitted. Optional
+
+         
+         });
+</script>
+}
+else if (Model.DeliveryType.Value == 2)
+{
+    // for parcel machines
+    <script>
+    var wd = new OmnivaWidget({
+         
+                  id: 1,
+
+             compact_mode: true,		// Compact widget is not shown
+                                         // If enabled only a dropdown with locations will be shown
+             custom_html: false,         // Predefined HTML is activated
+                                         // It is allowed to create a custom HTML                                // It will be included in the container		// Will be added to the unique element ids if 
+                show_offices: false,		// Post offices will be shown
+                                         // If disabled post offices will not be shown in the dropdown     
+             show_machines: true,	// Parcel machines will be shown
+                                         // If disabled parcel machines will not be shown in the dropdown
+                                             selection_value: 'Destination' // Preselected value. (case insensitive, will be trimmed) Can be empty or entirely omitted. Optional
+
+         });
+</script>
+}

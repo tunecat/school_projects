@@ -1,0 +1,57 @@
+﻿@model IEnumerable<BLL.App.DTO.Delivery>
+
+
+<table class="table">
+
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User)
+        </th>
+        <th>
+            @Resources.Domain.Delivery.Delivery.DeliveryTypeUnit
+        </th>
+        <th>
+            @Resources.Domain.Delivery.Delivery.Cost
+        </th>
+        <th>
+            @Resources.Domain.Delivery.Delivery.Destination
+        </th>
+        <th>
+            @Resources.Domain.Delivery.Delivery.DeliveredAt
+        </th>
+        <th>
+            @Resources.Domain.Delivery.Delivery.Status
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User!.FirstLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveryType!.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destination)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveredAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">@Resources.Common.Details</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

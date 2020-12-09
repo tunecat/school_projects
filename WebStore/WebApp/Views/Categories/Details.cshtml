@@ -1,0 +1,21 @@
+@model BLL.App.DTO.Category
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div>
+    <partial name="_DeleteDetails"/>
+    <dt class="col-sm-2">
+            @Resources.Domain.Category.Category.ParentCategory
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ParentCategory!.Id)
+        </dd>
+</div>
+<div>
+    <a asp-action="EditTranslation" asp-route-id="@Model.Id">Edit Translations</a> |
+    <a asp-action="Edit" asp-route-id="@Model.Id">@Resources.Common.Edit</a> |
+    <a asp-action="Index">@Resources.Common.BackToList</a>
+</div>

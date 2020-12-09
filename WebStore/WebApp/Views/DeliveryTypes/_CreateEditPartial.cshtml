@@ -1,0 +1,23 @@
+﻿@model BLL.App.DTO.DeliveryType
+
+
+<div asp-validation-summary="All" class="text-danger"></div>
+<div class="form-group">
+    <label asp-for="Name" class="control-label"> @Resources.Domain.Delivery.Delivery.Name</label>
+    <input asp-for="Name" class="form-control"/>
+    <span asp-validation-for="Name" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Value" class="control-label">
+        @Resources.Domain.Delivery.Delivery.Value
+    </label>
+    <input asp-for="Value" class="form-control"/>
+    <span asp-validation-for="Value" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="DeliveryCost" class="control-label">
+        @Resources.Domain.Delivery.Delivery.DeliveryCost
+    </label>
+    <input asp-for="DeliveryCost" min="0" max="10000" class="form-control"/>
+    <span asp-validation-for="DeliveryCost" class="text-danger"></span>
+</div>

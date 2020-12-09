@@ -1,0 +1,36 @@
+﻿@model WarehouseItemsViewModel
+
+<hr/>
+<h5>
+    @Resources.Domain.Warehouse.Warehouse.WarehouseItems
+</h5>
+<br/>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Resources.Domain.Item.Item.ItemUnit
+        </th>
+        <th>
+            @Resources.Domain.Warehouse.Warehouse.ItemsInStock
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var warehouseItem in Model.Warehouse.WarehouseItems!)
+    {
+        <tr>
+            <td>
+                <a asp-controller="Items" asp-action="Details" asp-route-id="@warehouseItem.ItemId">@warehouseItem.Item!.Name</a>
+            </td>
+            <td>
+                @warehouseItem.ItemsInStock
+            </td>
+            <td>
+                <a asp-action="Details" asp-controller="ItemInWarehouses" asp-route-Id="@warehouseItem.Id">@Resources.Common.Details</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,45 @@
+﻿@model BLL.App.DTO.Cart
+
+@{
+    ViewData["Title"] = "Cart";
+}
+
+
+@if (Model.CartItems.Count == 0)
+{
+    <div>
+        <h3 style="text-align: center">Empty</h3>
+    </div>
+} else {
+    <div class="row">
+        <div class="col-8">
+        <partial name="_CartItems" model="@Model"/>
+        </div>
+    <div class="col-4">
+    <table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => Model.TotalPrice)
+        </td>
+        <td>
+            <a asp-action="Clear" asp-route-cartId=@Model.Id>@Resources.Common.ClearCart</a>
+        </td>
+        <td>
+            <a asp-action="ChooseDeliveryType" asp-route-id=@Model.Id>@Resources.Common.Pay</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</div>
+</div>
+}

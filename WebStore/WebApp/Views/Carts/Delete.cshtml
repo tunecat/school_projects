@@ -1,0 +1,15 @@
+@model BLL.App.DTO.Cart
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<div>
+    <hr />
+    <partial name="_DeleteDetailsPartial"/>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="@Resources.Common.Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">@Resources.Common.BackToList</a>
+    </form>
+</div>

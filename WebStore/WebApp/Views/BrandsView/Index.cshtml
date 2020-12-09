@@ -1,0 +1,21 @@
+@model IEnumerable<BLL.App.DTO.Brand>
+
+@{
+    ViewData["Title"] = "Brands";
+}
+
+<div class="row">
+    @foreach (var brand in Model)
+    {
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <a asp-action="Details" asp-route-id="@brand.Id">
+                <div class="card">
+                    <img class="card-img-top" style="height: 240px;" src="https://lezebre.lu/images/detailed/13/nike-logo.png" alt="">
+                    <div class="card-body">
+                        <p class="card-text">@Html.DisplayFor(modelItem => brand.Name)</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+</div>

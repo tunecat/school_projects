@@ -1,0 +1,14 @@
+@model BLL.App.DTO.Brand
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <partial name="_DeleteDetails"/>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">@Resources.Common.Edit</a> |
+    <a asp-action="Delete" asp-route-id="@Model.Id">@Resources.Common.Delete</a>
+    <a asp-action="Index">@Resources.Common.BackToList</a>
+</div>

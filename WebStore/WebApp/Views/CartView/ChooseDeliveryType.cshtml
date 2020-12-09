@@ -1,0 +1,68 @@
+﻿@model CartDeliveryViewModel
+
+@{
+    ViewData["Title"] = "delivery info";
+}
+
+<!DOCTYPE html>
+
+<div class="row">
+    <div class="col-9">
+        <p style="text-align: center">Choose Delivery Type</p>
+        <hr/>
+        <div class="row">
+
+        @foreach (var deliveryType in Model.DeliveryTypes!)
+        {
+                <div class="col-xs-12 col-lg-4">
+                    <a asp-action="ToPay" asp-route-cartId="@Model.Cart.Id" asp-route-typeId="@deliveryType.Id">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">@Html.DisplayFor(modelItem => deliveryType.Name)</h5>
+                                <p class="card-text"> @Html.DisplayFor(modelItem => deliveryType.DeliveryCost) $</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+        }
+        </div>
+
+    </div>
+    <div class="col-3">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Tellimuse Andmed</h5>
+                <hr/>
+                <h6 class="card-subtitle mb-2 text-muted">Ostukorv</h6>
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.Cart.CartItems.Count) Products
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.Cart.TotalPrice)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Delivery
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <tr class="totals-row">
+                        <td>
+                            <strong>Summa</strong>
+                        </td>
+                        <td>
+                            <strong>@Html.DisplayFor(modelItem => Model.Cart.TotalPrice)</strong>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

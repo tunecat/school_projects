@@ -1,0 +1,46 @@
+@model IEnumerable<BLL.App.DTO.DeliveryType>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a asp-action="Create"> @Resources.Common.Create</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Resources.Domain.Delivery.Delivery.Name
+        </th>
+        <th>
+            @Resources.Domain.Delivery.Delivery.DeliveryCost
+        </th>
+        <th>
+            @Resources.Domain.Delivery.Delivery.Value
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveryCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id"> @Resources.Common.Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">@Resources.Common.Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">@Resources.Common.Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

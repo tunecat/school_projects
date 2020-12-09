@@ -1,0 +1,38 @@
+@model IEnumerable<BLL.App.DTO.Brand>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<p>
+    <a asp-action="Create">@Resources.Common.Create_New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               @Resources.Domain.Brand.Name
+            </th>
+            <th>
+                @Resources.Domain.Brand.Description
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">@Resources.Common.Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

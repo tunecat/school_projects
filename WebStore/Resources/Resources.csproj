@@ -1,0 +1,159 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Domain\Cart\" />
+      <Folder Include="Domain\DeliveryType\" />
+      <Folder Include="Domain\ItemCategory\" />
+      <Folder Include="Domain\ItemDelivery\" />
+      <Folder Include="Domain\ItemInCart\" />
+      <Folder Include="Domain\ItemInWarehouse\" />
+      <Folder Include="Views\Brands" />
+      <Folder Include="Views\Home" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Domain\Brand.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Brand.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Domain\Cart\Cart.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Cart.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Domain\Category\Category.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Category.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Domain\Delivery\Delivery.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Delivery.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Domain\ItemInCart\ItemInCart.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>ItemInCart.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Domain\Item\Item.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Item.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Domain\Payments\Payments.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Payments.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Domain\Warehouse\Warehouse.ru.Designer.cs">
+        <DependentUpon>Warehouse.ru.resx</DependentUpon>
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+      </Compile>
+      <Compile Update="Domain\Warehouse\Warehouse.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Warehouse.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Views\Shared\_Layout.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>_Layout.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Domain\Brand.et.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Domain\Brand.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>Brand.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Domain\Brand.ru.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Domain\Cart\Cart.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>Cart.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Domain\Category\Category.ee.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Domain\Category\Category.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>Category.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Domain\Category\Category.ru.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Domain\Delivery\Delivery.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>Delivery.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Domain\Delivery\Delivery.ru.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Domain\ItemInCart\ItemInCart.ee.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Domain\ItemInCart\ItemInCart.en.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Domain\ItemInCart\ItemInCart.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>ItemInCart.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Domain\ItemInCart\ItemInCart.ru.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Domain\Item\Item.ee.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>Item - Copy (3).Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Domain\Item\Item.ru.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>Item - Copy.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Domain\Item\Item.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>Item.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Domain\Payments\Payments.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>Payments.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Domain\Payments\Payments.ru.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Domain\Warehouse\Warehouse.ru.resx">
+        <LastGenOutput>Warehouse.Designer.cs</LastGenOutput>
+        <Generator>ResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Domain\Warehouse\Warehouse.ee.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Warehouse.ee.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Domain\Warehouse\Warehouse.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>Warehouse.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Views\Shared\_Layout.et.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Views\Shared\_Layout.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>_Layout.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Views\Shared\_Layout.ru.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+    </ItemGroup>
+
+</Project>

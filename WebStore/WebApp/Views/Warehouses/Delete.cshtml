@@ -1,0 +1,18 @@
+@model WarehouseItemsViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>@Resources.Common.Delete</h1>
+
+<div>
+
+    <partial name="_DeleteDetails"/>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Warehouse.Id"/>
+        <input type="submit" value="@Resources.Common.Delete" class="btn btn-danger"/> |
+        <a asp-action="Index">@Resources.Common.BackToList</a>
+    </form>
+</div>

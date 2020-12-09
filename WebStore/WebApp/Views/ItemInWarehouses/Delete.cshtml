@@ -1,0 +1,31 @@
+@model BLL.App.DTO.ItemInWarehouse
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>@Resources.Common.Delete</h2>
+<div>
+    @Resources.Domain.Warehouse.Warehouse.WarehouseUnit - @Html.DisplayFor(model => model.Warehouse!.Name)
+    <hr/>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Resources.Domain.Item.Item.ItemUnit
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item!.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Resources.Domain.Warehouse.Warehouse.ItemsInStock
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ItemsInStock)
+        </dd>
+
+    </dl>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id"/>
+        <input type="submit" value="@Resources.Common.Delete" class="btn btn-danger"/> |
+        <a asp-action="Details" asp-route-id="@Model.Id">@Resources.Common.BackToList</a>
+    </form>
+</div>

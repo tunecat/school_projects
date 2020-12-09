@@ -1,0 +1,79 @@
+@using BLL.App.DTO
+@model IEnumerable<BLL.App.DTO.Item>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a asp-action="Create">@Resources.Common.Create_New</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Resources.Domain.Item.Item.Name
+        </th>
+        <th>
+            @Resources.Domain.Item.Item.Description
+
+        </th>
+        <th>
+            @Resources.Domain.Item.Item.Price
+
+        </th>
+        <th>
+            @Resources.Domain.Item.Item.Discount
+        </th>
+        <th>
+            @Resources.Domain.Item.Item.Brand
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            @if (item.Discount != 0)
+            {
+                <td style="text-decoration: line-through">
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+            }
+            else
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+            }
+
+            <td>
+                @if (item.Discount != 0)
+                {
+                    @Html.DisplayFor(modelItem => item.Discount)
+                    <text>% -> @Html.DisplayFor(modelItem => item.PriceWithDiscount)</text>
+                }
+                else
+                {
+                    <text>None</text>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand!.Name)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">
+                    @Resources.Common.Details
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

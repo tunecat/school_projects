@@ -1,0 +1,41 @@
+@model BLL.App.DTO.Item
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1> @Resources.Common.Details</h1>
+
+<div>
+    <partial name="_DeleteDetails"/>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Resources.Domain.Item.Item.Discount
+        </dt>
+        <dd class="col-sm-10">
+            <div style="display: flex; flex-wrap: wrap;">
+                @Html.DisplayFor(model => model.Discount) % ->
+                <form asp-action="ChangeDiscount" style="display: flex; flex-wrap: wrap;">
+                    <input asp-for="@Model.Id" hidden="" value="@Model.Id"/>
+                    <div class="form-group">
+                        <input width="100px" asp-for="@Model.Discount" type="number" value=" " min="0" max="99" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="@Resources.Domain.Item.Item.Set" class="btn btn-primary"/>
+                    </div>
+
+                </form>
+            </div>
+        </dd>
+    </dl>
+    <strong> @Resources.Domain.Item.Item.Categories :</strong>
+    @foreach (var itemCategory in Model.ItemCategories!)
+    {
+        <p> @(itemCategory.Category!.Name)</p>
+    }
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">@Resources.Common.Edit</a> |
+    <a asp-action="Delete" asp-route-id="@Model.Id">@Resources.Common.Delete</a>
+
+</div>

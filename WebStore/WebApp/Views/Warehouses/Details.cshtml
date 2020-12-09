@@ -1,0 +1,17 @@
+@model WarehouseItemsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<br/>
+
+<div>
+    <partial name="_DeleteDetails"/>
+    <partial name="_WarehouseItems"/>
+    <a asp-action="AddItemsToWarehouse" asp-route-warehouseId="@Model.Warehouse.Id">@Resources.Domain.Warehouse.Warehouse.AddItems</a>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Warehouse.Id">@Resources.Domain.Warehouse.Warehouse.EditWarehouseInfo</a> |
+    <a asp-action="Index">@Resources.Common.BackToList</a>
+</div>

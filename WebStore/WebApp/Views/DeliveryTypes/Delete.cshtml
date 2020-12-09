@@ -1,0 +1,24 @@
+@model BLL.App.DTO.DeliveryType
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>@Resources.Common.Delete</h1>
+
+<div>
+    <h4>
+        @Resources.Domain.Delivery.Delivery.DeliveryTypeUnit
+    </h4>
+    <hr/>
+    <dl class="row">
+        <partial name="_DeleteDetailsPartial"/>
+
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id"/>
+        <input type="submit" value="@Resources.Common.Delete" class="btn btn-danger"/> |
+        <a asp-action="Index">@Resources.Common.BackToList</a>
+    </form>
+</div>

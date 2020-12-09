@@ -1,0 +1,52 @@
+@model IEnumerable<Domain.Payments>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Resources.Domain.Payments.Payments.Cart
+            </th>
+            <th>
+                @Resources.Domain.Payments.Payments.CreatedAt
+                </th>
+            <th>
+               @Resources.Domain.Payments.Payments.PayedAt
+            </th>
+            <th>
+                @Resources.Domain.Payments.Payments.Info
+            </th>
+            <th>
+                @Resources.Domain.Payments.Payments.Sum
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cart!.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PayedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Info)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sum)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">@Resources.Common.Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

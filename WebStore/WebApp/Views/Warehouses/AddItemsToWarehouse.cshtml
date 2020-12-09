@@ -1,0 +1,24 @@
+﻿@model WarehouseItemsViewModel
+
+<br/>
+
+<div>
+    <partial name="_DeleteDetails"/>
+    <partial name="_WarehouseItems"/>
+    <a asp-action="AddItemsToWarehouse" asp-route-warehouseId="@Model.Warehouse.Id">@Resources.Domain.Warehouse.Warehouse.AddItems</a>
+    
+    <form asp-action="AddItemsToWarehouse">
+        <input asp-for="@Model.Warehouse.Id" hidden="" value="@Model.Warehouse.Id"/>
+        <div class="form-group">
+            <select asp-for="Items" class="form-control" asp-items="@Model.ItemsSelectList" multiple="multiple"></select>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="@Resources.Common.Add" class="btn btn-primary"/> <a asp-action="Details" asp-route-id="@Model.Warehouse.Id" class="btn btn-primary">@Resources.Common.Cancel</a>
+        </div>
+    </form>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Warehouse.Id">@Resources.Domain.Warehouse.Warehouse.EditWarehouseInfo</a> |
+    <a asp-action="Index">@Resources.Common.BackToList</a>
+</div>
+

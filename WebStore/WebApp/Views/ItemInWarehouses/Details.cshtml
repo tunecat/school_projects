@@ -1,0 +1,35 @@
+@model ItemInWarehouseViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    @Resources.Domain.Warehouse.Warehouse.WarehouseUnit - @Html.DisplayFor(model => model.ItemInWarehouse.Warehouse!.Name)
+    <hr/>
+
+    <p style="color: red">@Model.ErrorMessage</p>
+
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Resources.Domain.Item.Item.ItemUnit
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ItemInWarehouse.Item!.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Resources.Domain.Warehouse.Warehouse.ItemsInStock
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ItemInWarehouse.ItemsInStock) ->
+            <form method="post" asp-action="changeAmount">
+                <input hidden="" name="id" value="@Model.ItemInWarehouse.Id"/><input type="number" min="0" name="amount"/><input type="submit" value="+" name="submitButton"/><input type="submit" value="-" name="submitButton"/>
+                <input type="submit" value="@Resources.Domain.Warehouse.Warehouse.Empty" name="submitButton"/>
+            </form>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Delete" asp-route-id="@Model.ItemInWarehouse.Id">@Resources.Domain.Warehouse.Warehouse.RemoveItem</a>
+    <a asp-controller="Warehouses" asp-action="Details" asp-route-id="@Model.ItemInWarehouse.WarehouseId">@Resources.Domain.Warehouse.Warehouse.BackToWarehouse</a>
+</div>

@@ -1,0 +1,44 @@
+﻿@using Newtonsoft.Json
+@using BLL.App.DTO
+@model CategoryTranslateViewModel
+
+@{
+    ViewData["Title"] = "Edit Translations";
+}
+
+
+<h4>@Resources.Domain.Category.Category.CategoryUnit</h4>
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditTranslation">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            @foreach (var translation  in Model.Translations)
+            {
+                var key = translation.Key;
+                var value = translation.Value;
+                <div class="form-group">
+                    <label asp-for="@translation.Key" class="control-label">@translation.Key</label>
+                    <input name="@translation.Key" value="@value" class="form-control"/>
+                </div>
+            }
+            <input type="hidden" asp-for="@Model.CategoryId"/>
+            <div class="form-group">
+                <input type="submit" value="@Resources.Views.Shared._Layout.Save" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@Resources.Common.BackToList</a>
+</div>
+
+<script>
+
+
+</script>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

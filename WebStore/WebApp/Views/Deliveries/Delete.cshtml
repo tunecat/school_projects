@@ -1,0 +1,56 @@
+@model BLL.App.DTO.Delivery
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>@Resources.Common.Delete</h1>
+
+<div>
+    <h4>@Resources.Domain.Delivery.Delivery.DeliveryUnit</h4>
+    <hr/>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User!.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Resources.Domain.Delivery.Delivery.DeliveryTypeUnit
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DeliveryType!.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Resources.Domain.Delivery.Delivery.Cost
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cost)
+        </dd>
+        <dt class="col-sm-2">
+            @Resources.Domain.Delivery.Delivery.Destination
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Destination)
+        </dd>
+        <dt class="col-sm-2">
+            @Resources.Domain.Delivery.Delivery.DeliveredAt
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DeliveredAt)
+        </dd>
+        <dt class="col-sm-2">
+            @Resources.Domain.Delivery.Delivery.Status
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id"/>
+        <input type="submit" value="Delete" class="btn btn-danger"/> |
+        <a asp-action="Index">@Resources.Common.BackToList</a>
+    </form>
+</div>
